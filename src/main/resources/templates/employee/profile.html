@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Profile</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Profile</h1>
+        <div th:if="${employee != null}">
+            <h2 th:text="${employee.firstName} + ' ' + ${employee.lastName}"></h2>
+            <img th:src="${employee.profilePictureUrl}" alt="Profile Picture" class="profile-picture"/>
+            <p><strong>Email:</strong> <span th:text="${employee.email}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${employee.phone}"></span></p>
+            <p><strong>Date of Birth:</strong> <span th:text="${#dates.format(employee.dateOfBirth, 'dd/MM/yyyy')}"></span></p>
+            <p><strong>Department:</strong> <span th:text="${employee.department.name}"></span></p>
+            <p><strong>Position:</strong> <span th:text="${employee.position}"></span></p>
+            <p><strong>Salary:</strong> <span th:text="${employee.salary}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${employee.status}"></span></p>
+            <p><strong>Emergency Contact:</strong> <span th:text="${employee.emergencyContactName} + ' (' + ${employee.emergencyContactPhone} + ')'"></span></p>
+            <p><strong>Hire Date:</strong> <span th:text="${#dates.format(employee.hireDate, 'dd/MM/yyyy')}"></span></p>
+            <p th:if="${employee.terminationDate != null}">
+                <strong>Termination Date:</strong> <span th:text="${#dates.format(employee.terminationDate, 'dd/MM/yyyy')}"></span>
+            </p>
+            <a th:href="@{/employee/edit/{id}(id=${employee.id})}" class="btn">Edit Profile</a>
+        </div>
+        <div th:if="${employee == null}">
+            <p>No employee data found.</p>
+        </div>
+    </div>
+</body>
+</html>

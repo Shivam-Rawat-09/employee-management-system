@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Leave Requests</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Leave Requests</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Leave Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through leave requests and display them here -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>Annual Leave</td>
+                    <td>2023-10-01</td>
+                    <td>2023-10-05</td>
+                    <td>Family vacation</td>
+                    <td>Pending</td>
+                    <td>
+                        <a href="#" class="approve-btn">Approve</a>
+                        <a href="#" class="reject-btn">Reject</a>
+                    </td>
+                </tr>
+                <!-- More leave requests can be added here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

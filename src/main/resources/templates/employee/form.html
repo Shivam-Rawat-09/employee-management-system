@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    <link rel="stylesheet" th:href="@{/static/css/styles.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${employee.id == null} ? 'Add Employee' : 'Edit Employee'"></h1>
+        <form th:action="@{${employee.id == null} ? '/employee/add' : '/employee/edit/' + ${employee.id}}" method="post">
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" th:value="${employee.firstName}" required>
+            </div>
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" th:value="${employee.lastName}" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" th:value="${employee.email}" required>
+            </div>
+            <div>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" th:value="${employee.phone}" required>
+            </div>
+            <div>
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" th:value="${employee.dateOfBirth}" required>
+            </div>
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="MALE" th:selected="${employee.gender == 'MALE'}">Male</option>
+                    <option value="FEMALE" th:selected="${employee.gender == 'FEMALE'}">Female</option>
+                </select>
+            </div>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" th:value="${employee.address}" required>
+            </div>
+            <div>
+                <label for="hireDate">Hire Date:</label>
+                <input type="date" id="hireDate" name="hireDate" th:value="${employee.hireDate}" required>
+            </div>
+            <div>
+                <label for="departmentId">Department:</label>
+                <select id="departmentId" name="departmentId" required>
+                    <option th:each="department : ${departments}" 
+                            th:value="${department.id}" 
+                            th:text="${department.departmentName}" 
+                            th:selected="${employee.departmentId == department.id}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" th:value="${employee.position}" required>
+            </div>
+            <div>
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" th:value="${employee.salary}" required>
+            </div>
+            <div>
+                <label for="managerId">Manager:</label>
+                <select id="managerId" name="managerId">
+                    <option th:each="manager : ${managers}" 
+                            th:value="${manager.id}" 
+                            th:text="${manager.firstName + ' ' + manager.lastName}" 
+                            th:selected="${employee.managerId == manager.id}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="ACTIVE" th:selected="${employee.status == 'ACTIVE'}">Active</option>
+                    <option value="INACTIVE" th:selected="${employee.status == 'INACTIVE'}">Inactive</option>
+                    <option value="TERMINATED" th:selected="${employee.status == 'TERMINATED'}">Terminated</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+        <a th:href="@{/employee/list}">Back to Employee List</a>
+    </div>
+</body>
+</html>
